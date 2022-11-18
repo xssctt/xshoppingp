@@ -1,0 +1,26 @@
+Common
+    Common:
+    Result: 实现
+    ResultCoude:枚举类 全局验证码
+Config:
+    控制 webconfig:解释器
+Controller:
+    页面控制
+
+entity: 实体类
+    AdvertiserInfo:公告表 实体信息
+    CartInfo:购物车订单实体类信息
+    CommentInfo: 商品评论信息表 实体类信息
+    GoodsInfo: 商品表 信息
+    NxSystemFileInfo:文件存储信息
+    OrderGoodsRel: 订单 商品 表
+    OrderInfo: 订单
+    TypeInfo: 商品类别描述信息
+    UserInfo: 用户信息表
+exception:异常信息
+    Custom--:
+    Global--:controller 异常信息
+mapper:数据查询方法
+service: 逻辑实现
+    userinfo:
+

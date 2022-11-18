@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome.css" rel="stylesheet">
+    <link href="../../css/basic.css" rel="stylesheet">
+    <link href="../../css/custom.css" rel="stylesheet">
+    <link href="../../css/my.css" rel="stylesheet">
+    <link href="../../css/element/index.css" rel="stylesheet">
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<!--  nav 为页面修饰  fa  为小图标    -->
+<div id="wrapper" v-cloak>
+
+<nav class="navbar navbar-default navbar-cls-top" style="margin-bottom: 0">
+
+    <div class="navbar-header">
+       <a class="navbar-brand" href="index.html">后台管理系统 </a>
+    </div>
+
+    <div class="header-right">
+        <a href="javascript:void(0)" class="btn btn-info" @click="logout" title="退出登录">
+            <i class="fa fa-sign-out fa-2x"></i>
+        </a>
+    </div>
+
+    <div class="header-right">
+        <a href="accountUserInfo.html" class="btn btn-info"  title="跳转个人信息">
+            <i class="fa fa-user fa-2x"></i>
+        </a>
+    </div>
+
+    <div class="header-right" style="padding-top: 25px">
+        欢迎你，{{user.nickname}}
+    </div>
+
+</nav>
+<!--            上面 头部   下面左侧栏                        -->
+
+    <nav class="navbar navbar-default navbar-side">
+
+        <div class="sidebar-collapse">
+            <ul class="nav" id="main-menu">
+
+                <li>
+                    <a class="active-menu" href="index.html"> <i class="fa fa-dashboard"> </i> 系统首页 </a>
+                </li>
+
+                <li>
+                <a href="#"><i class="fa fa-yelp"></i> 信息展示 <span class="fa arrow"></span> </a>
+<!--        class="active-menu" 现在处于那个页面                  nav-second-level  二级下拉-->
+                    <ul class="nav nav-second-level collapse in">
+                        <li> <a href="userInfo.html"><i class="fa fa-table"></i>用户信息 </a> </li>
+                        <li> <a href="advertiserInfo.html"> <i class="fa fa-table"></i> 公告信息</a></li>
+                        <li> <a href="typeInfo.html"> <i class="fa fa-table"></i> 商品类别信息</a></li>
+                        <li> <a href="goodsInfo.html"> <i class="fa fa-table"></i> 商品详情信息</a></li>
+                        <li> <a href="orderInfo.html"> <i class="fa fa-table"></i>订单信息 </a></li>
+                        <li> <a href="cartInfo.html"> <i class="fa fa-table"></i> 购物车信息</a></li>
+                        <li> <a href="commentInfo.html"> <i class="fa fa-table"></i> 评论信息</a></li>
+
+                    </ul>
+                </li>
+                <li> <a href="accountUserInfo.html"> <i class="fa fa-user"></i> 个人信息</a></li>
+                <li> <a href="updatePassword.html.html"> <i class="fa fa-unlock-alt"></i> 修改密码</a></li>
+                <li> <a href="javascript:void(0)" @click="logout()"> <i class="fa fa-power-off"></i> 退出登录</a></li>
+
+
+            </ul>
+        </div>
+
+   </nav>
+<!-- 右侧盒子 效果  右侧数据展示 -->
+    <div id="page-wrapper">
+        <div id="page-inner">
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<script src="../../js/jquery-1.10.2.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/jquery.metisMenu.js"></script>
+<script src="../../js/custom.js"></script>
+<script src="../../js/my.js"></script>
+
+<script src="../../js/vue2.6.11/vue.min.js"></script>
+<script src="../../js/vue2.6.11/axios.js"></script>
+
+<script src="../../js/echarts.min.js"></script>
+<script src="../../js/element/index.js"></script>
+
+<script>
+    // vue
+    new Vue({
+        el:"#wrapper",
+        data:{
+            user:{}
+        },
+        //页面方法
+        created: function (){
+            //从缓存取出usr信息
+            this.user=JSON.parse(localStorage.getItem('user'));
+        },
+        methods: {
+            //退出
+            logout(){
+                logout();
+            }
+        }
+    })
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,101 @@
+//    /**
+//     * 非法参数过滤器`
+//     *
+//     * @return
+//     */
+//    @Bean
+//    public FilterRegistrationBean illegalCharacterFilter() {
+//        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
+//        filterRegistrationBean.setName("IllegalCharacterFilter");
+//        filterRegistrationBean.setFilter(new IllegalCharacterFilter());
+//        Map<String, String> initParameters = new HashMap<>();
+//        initParameters.put("methodNames",
+//                "Login;save"
+//                        + "getSendPage;openRtmpStatus;closeRtmpStatus");
+//        filterRegistrationBean.setInitParameters(initParameters);
+//        filterRegistrationBean.addUrlPatterns("*.action");
+//        return filterRegistrationBean;
+//    }
+
+//    @Bean
+//    public ServletRegistrationBean uploadServlet() {
+//        ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean();
+//        servletRegistrationBean.setName("UploadServlet");
+//        servletRegistrationBean.setServlet(new UploadServlet());
+//        servletRegistrationBean.addUrlMappings("/upload/upload.htm");
+//        return servletRegistrationBean;
+//    }
+
+
+
+//    /**
+//     * 添加静态资源文件，外部可以直接访问地址
+//     *
+//     * @param registry
+//     */
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        String storePath = "file:" + StorePathUtil.getStorePath();
+//        if (ResourcesLoad.getDevMode()) {
+//            registry.addResourceHandler("/Test/static/**").addResourceLocations("classpath:/static/Test/static/");
+//            registry.addResourceHandler("/admin/static/**").addResourceLocations("classpath:/static/admin/static/");
+//            registry.addResourceHandler("/mobile/static/**").addResourceLocations("classpath:/static/mobile/static/");
+//            registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
+//        }
+//        else {
+//            registry.addResourceHandler("/Test/static/**").addResourceLocations(
+//                    storePath + "Test" + BaseConstant.SEPERATOR + "static" + BaseConstant.SEPERATOR);
+//            registry.addResourceHandler("/admin/static/**").addResourceLocations(
+//                    storePath + "admin" + BaseConstant.SEPERATOR + "static" + BaseConstant.SEPERATOR);
+//            registry.addResourceHandler("/mobile/static/**").addResourceLocations(
+//                    storePath + "mobile" + BaseConstant.SEPERATOR + "static" + BaseConstant.SEPERATOR);
+//            registry.addResourceHandler("/js/**").addResourceLocations(storePath + "js" + BaseConstant.SEPERATOR);
+//        }
+//        registry.addResourceHandler("/sysfile/**").addResourceLocations(storePath + "sysfile" + BaseConstant.SEPERATOR);
+//        registry.addResourceHandler("/upload/**").addResourceLocations(storePath + "upload" + BaseConstant.SEPERATOR);
+//    }
+
+//    /**
+//     * 拦截器
+//     */
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        //后台
+//        List adminExclude = new ArrayList<>();
+//        adminExclude.add("/admin/pages/**");
+//        adminExclude.add("/admin/static/**");
+//        registry.addInterceptor(new AdminIsLoginInterceptor()).addPathPatterns("/admin/**")
+//                .excludePathPatterns(adminExclude);
+//
+//        //前台
+//        List homeExclude = new ArrayList<>();
+//        homeExclude.add("/home/login.action");
+//        registry.addInterceptor(new TestCommonInterceptor()).addPathPatterns("/home/**")
+//                .excludePathPatterns(homeExclude);
+//
+//        //h5
+//        registry.addInterceptor(new MobileCommonInterceptor()).addPathPatterns("/mobile/**")
+//                .excludePathPatterns("/mobile/pages/**", "/mobile/static/**");
+//
+//        registry.addInterceptor(new TestInterfaceInterceptor()).addPathPatterns("/itf/mobile/**");
+//
+//        List exclude = new ArrayList<>();
+//        exclude.add("/");
+//        exclude.add("/swagger-ui/**");
+//        exclude.addAll(adminExclude);
+//        exclude.addAll(homeExclude);
+//        registry.addInterceptor(new TestSafeCodeInterceptor()).addPathPatterns("/**").excludePathPatterns(exclude);
+//
+//    }
+
+//    /**
+//     * 文件上传配置
+//     */
+//    @Bean
+//    public MultipartConfigElement multipartConfigElement() {
+//        MultipartConfigFactory factory = new MultipartConfigFactory();
+//        factory.setMaxFileSize(DataSize.ofMegabytes(10485760));
+//        factory.setMaxRequestSize(DataSize.ofMegabytes(100));
+//        return factory.createMultipartConfig();
+//
+//    }

@@ -1,0 +1,45 @@
+2022-11-19 01:20:10.590  INFO 15892 --- [main] c.j.xshopping.XshoppingApplication       : Starting XshoppingApplication using Java 11.0.9.1 on test with PID 15892 (D:\idea_workspace\wxshop\shopp\target\classes started by lenovo in D:\idea_workspace\wxshop\shopp)
+2022-11-19 01:20:10.596  INFO 15892 --- [main] c.j.xshopping.XshoppingApplication       : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 01:20:11.674  WARN 15892 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.javaclimb.xshopping]' package. Please check your configuration.
+2022-11-19 01:20:12.203  INFO 15892 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2022-11-19 01:20:12.215  INFO 15892 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 01:20:12.215  INFO 15892 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.63]
+2022-11-19 01:20:12.408  INFO 15892 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-19 01:20:12.409  INFO 15892 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1742 ms
+2022-11-19 01:20:12.541  INFO 15892 --- [main] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2022-11-19 01:20:12.682  INFO 15892 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2022-11-19 01:20:13.818  WARN 15892 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2022-11-19 01:20:13.991  WARN 15892 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8088 is already in use
+2022-11-19 01:20:13.994  INFO 15892 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2022-11-19 01:20:13.997  INFO 15892 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2022-11-19 01:20:14.000  INFO 15892 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-11-19 01:20:14.019  INFO 15892 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-11-19 01:20:14.056 ERROR 15892 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8088 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8088 or configure this application to listen on another port.
+
+2022-11-19 01:21:05.424  INFO 12628 --- [main] c.j.xshopping.XshoppingApplication       : Starting XshoppingApplication using Java 11.0.9.1 on test with PID 12628 (D:\idea_workspace\wxshop\shopp\target\classes started by lenovo in D:\idea_workspace\wxshop\shopp)
+2022-11-19 01:21:05.428  INFO 12628 --- [main] c.j.xshopping.XshoppingApplication       : No active profile set, falling back to 1 default profile: "default"
+2022-11-19 01:21:06.494  WARN 12628 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.javaclimb.xshopping]' package. Please check your configuration.
+2022-11-19 01:21:07.069  INFO 12628 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2022-11-19 01:21:07.087  INFO 12628 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-19 01:21:07.088  INFO 12628 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.63]
+2022-11-19 01:21:07.289  INFO 12628 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-19 01:21:07.289  INFO 12628 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1790 ms
+2022-11-19 01:21:07.394  INFO 12628 --- [main] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2022-11-19 01:21:07.517  INFO 12628 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2022-11-19 01:21:08.619  WARN 12628 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2022-11-19 01:21:08.816  INFO 12628 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
+2022-11-19 01:21:08.832  INFO 12628 --- [main] c.j.xshopping.XshoppingApplication       : Started XshoppingApplication in 4.509 seconds (JVM running for 6.471)
