@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javaclimb.xshopping.mapper.SeckillInfoMapper">
+
+
+    <select id="findByName" resultType="com.javaclimb.xshopping.entity.SeckillInfo">
+        SELECT *
+        FROM  seckill_info a left join goods_info g on a.goodsId=g.id
+        where 1=1
+
+
+        <if test="name !=null and name !='all' and name !=''">
+            and g.`name` like concat('%',#{name},'%')
+        </if>
+        <if test="id !=null and id !=''">
+            and g.`id`=#{id}
+        </if>
+    </select>
+
+    <select id="findlistByid" resultType="com.javaclimb.xshopping.entity.SeckillInfo">
+        select goodsid
+        from seckill_info
+    </select>
+
+
+</mapper>

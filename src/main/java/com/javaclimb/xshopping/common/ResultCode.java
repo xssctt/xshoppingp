@@ -12,7 +12,8 @@ public enum ResultCode {
     USER_EXIST_ERROR("2001","账户已存在"),
     USER_ACCOUNT_ERROR("2002","账户或密码错误"),
     USER_NOT_EXIST_ERROR("2003","用户未找到"),
-    ORDER_PAY_ERROR("3001","库存不足");
+    ORDER_PAY_ERROR("3001","库存不足"),
+    SECKILL_OLD_ERROR("9001","秒杀商品已存在");
     public String code;
     public String msg;
 

@@ -10,6 +10,7 @@ import com.javaclimb.xshopping.service.OrderInfoService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -39,6 +40,21 @@ public class OrderInfoController {
 
     }
 
+
+    /**
+     * 查询所有信息  分页
+     * required = false 不是必须传值
+     */
+    @GetMapping("/page")
+    public Result<PageInfo<OrderInfo>> findFrontPage(@RequestParam(required = false) Long userId,
+                                                    @RequestParam(required = false,defaultValue = "1") Integer pageNum,
+                                                    @RequestParam(required = false,defaultValue = "10") Integer pageSize,
+                                                    HttpServletRequest request){
+        return Result.success(orderInfoService.findPage(userId,pageNum,pageSize,request));
+    }
+
+
+
     /**
      * 查询所有信息  分页
      * required = false 不是必须传值
@@ -50,6 +66,25 @@ public class OrderInfoController {
                                                      @RequestParam(required = false,defaultValue = "10") Integer pageSize){
         return Result.success(orderInfoService.findFrontPages(userId,state,pageNum,pageSize));
     }
+
+    /**
+     *改变订单状态
+     */
+    @PostMapping("/state/{id}/{state}")
+    public Result state(@PathVariable Long id,@PathVariable String state){
+        orderInfoService.changeState(id,state);
+        return Result.success();
+    }
+
+    /**
+     *删除订单
+     */
+    @DeleteMapping("/{id}")
+    public Result delete(@PathVariable Long id){
+        orderInfoService.delete(id);
+        return Result.success();
+    }
+
 }
 
 

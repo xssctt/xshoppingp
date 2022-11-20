@@ -65,6 +65,7 @@
                         <li> <a href="orderInfo.html"> <i class="fa fa-table"></i>订单信息 </a></li>
                         <li> <a href="cartInfo.html"> <i class="fa fa-table"></i> 购物车信息</a></li>
                         <li> <a href="commentInfo.html"> <i class="fa fa-table"></i> 评论信息</a></li>
+                        <li> <a href="seckillInfo.html"> <i class="fa fa-table"></i> 秒杀商品</a></li>
 
                     </ul>
                 </li>
@@ -103,7 +104,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>商品名称</th>
-                                    <th>描述</th>
+                                    <th style="width: 50%;">描述</th>
                                     <th>所属类别</th>
                                     <th>价格</th>
                                     <th>折扣</th>
@@ -349,6 +350,7 @@
             //从缓存取出usr信息
             this.user=JSON.parse(localStorage.getItem('user'));
             this.loadTable(1);
+           //typeObjs 所有的商品类别
             axios.get("/typeInfo/page/all?pageSize=1000").then(res=>{
                 if(res.data.code ==='0'){
                     this.typeObjs=res.data.data.list;
@@ -431,7 +433,7 @@
                 $('#mod').modal('show');
             },
 
-            //删除类别
+            //删除shangpin
             del(id){
 
                 let _this=this;//获取外部this
@@ -505,7 +507,7 @@
                 });
             },
 
-            //
+            //关闭
             cancel: function (){
                 $("#mymodel").hide();
             }

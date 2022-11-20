@@ -1,6 +1,5 @@
 package com.javaclimb.xshopping.mapper;
 
-import com.javaclimb.xshopping.entity.AdvertiserInfo;
 import com.javaclimb.xshopping.entity.GoodsInfo;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -36,6 +35,8 @@ public interface GoodsInfoMapper extends Mapper<GoodsInfo> {
      */
     @Select("select * from goods_info order by sales desc")
     List<GoodsInfo> findHotSalesGoods();
+
+
 
 
 }

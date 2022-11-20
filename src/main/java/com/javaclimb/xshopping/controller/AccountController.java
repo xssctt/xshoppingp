@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @RestController
 @ResponseBody
@@ -71,6 +70,7 @@ public class AccountController {
      */
     @PostMapping("/register")
     public  Result<UserInfo> register(@RequestBody UserInfo userInfo,HttpServletRequest request){
+        //
         if (StrUtil.isBlank(userInfo.getName()) || StrUtil.isBlank(userInfo.getPassword())){
             throw new CustomException(ResultCode.PARAM_ERROR);
         }

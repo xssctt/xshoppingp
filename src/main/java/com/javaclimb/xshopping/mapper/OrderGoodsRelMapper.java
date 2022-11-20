@@ -13,4 +13,9 @@ public interface OrderGoodsRelMapper extends Mapper<OrderGoodsRel> {
      */
     List<OrderGoodsRel> findByOrderid(Long orderId);
 
+    /**
+     * 根据订单id删除订单关联关系
+     * @param orderId
+     */
+    void deleteByOrderId(Long orderId);
 }

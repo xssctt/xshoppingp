@@ -5,6 +5,7 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.RandomUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.javaclimb.xshopping.common.Common;
 import com.javaclimb.xshopping.common.ResultCode;
 import com.javaclimb.xshopping.entity.GoodsInfo;
 import com.javaclimb.xshopping.entity.OrderGoodsRel;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -58,13 +60,18 @@ public class OrderInfoService {
         String orderId=userId+ DateUtil.format(new Date(),"yyyyMMddHHmm")+ RandomUtil.randomNumbers(4);
         orderInfo.setOrderid(orderId);
         //用户相关
-        UserInfo userInfo=userInfoService.findById(userId);  //用户查到的数据放到订单信息表
-        orderInfo.setLinkaddress(userInfo.getAddress());    //地址
-        orderInfo.setLinkman(userInfo.getNickname());       //昵称
-        orderInfo.setLinkphone(userInfo.getPhone());        //电话
-        //2 保存订单表
-        orderInfo.setCreatetime(DateUtil.formatDateTime(new Date()));  //订单创建时间
-        orderInfoMapper.insertSelective(orderInfo);         //保存
+        // 用户查到的数据放到订单信息表
+        UserInfo userInfo=userInfoService.findById(userId);
+        //地址
+        orderInfo.setLinkaddress(userInfo.getAddress());
+        //昵称
+        orderInfo.setLinkman(userInfo.getNickname());
+        //电话
+        orderInfo.setLinkphone(userInfo.getPhone());
+        //2 保存订单表//订单创建时间
+        orderInfo.setCreatetime(DateUtil.formatDateTime(new Date()));
+        //保存
+        orderInfoMapper.insertSelective(orderInfo);
 
         //
         List<OrderInfo> orderInfoList=orderInfoMapper.findByOrderId(orderId);
@@ -90,8 +97,10 @@ public class OrderInfoService {
             if (goodsDetail == null){
                 continue;
             }
-            Integer orderCount=orderGoodsVO.getCount() == null ? 0 : orderGoodsVO.getCount(); //order 购买
-            Integer goodsCount=goodsDetail.getCount() == null ? 0 :goodsDetail.getCount();   // 库存
+            //order 购买
+            Integer orderCount=orderGoodsVO.getCount() == null ? 0 : orderGoodsVO.getCount();
+            // 库存
+            Integer goodsCount=goodsDetail.getCount() == null ? 0 :goodsDetail.getCount();
 
         //4 修改库存
         if (orderCount>goodsCount){
@@ -172,11 +181,89 @@ public class OrderInfoService {
         //orderInfo  userInfo +  goodsList
     }
 
+
     /**
      * 改变订单状态
+     * @param id
+     * @param state
      */
     public void changeState(Long id,String state){
-        OrderInfo orderInfo=orderInfoMapper.finById(id);
+        OrderInfo order=orderInfoMapper.finById(id);
+        Long userId=order.getUserid();
+        UserInfo user=userInfoService.findById(userId);
+
+        if (state.equals("待发货")){
+            //校验余额
+            Double account=user.getAccount();
+            Double totalPrice=order.getTotalprice();
+
+            if ((account < totalPrice)){
+                throw new CustomException("-1","账户余额不足");
+            }
+            user.setAccount(user.getAccount() - order.getTotalprice());
+            //修改用户余额
+            userInfoService.update(user);
+
+        }
+
+        if (state.equals("已退货")){
+            //校验余额
+            Double account=user.getAccount();
+            Double totalPrice=order.getTotalprice();
+            user.setAccount(user.getAccount() + order.getTotalprice());
+            //修改用户余额
+            userInfoService.update(user);
+        }
+        //更新订单的状态
+        orderInfoMapper.updateState(id,state);
+    }
+
+    /**
+     *后台 查看订单列表
+     * @param userId
+     * @param pageNum
+     * @param pageSize
+     * @param request
+     * @return
+     */
+    public PageInfo<OrderInfo> findPage(Long userId, Integer pageNum, Integer pageSize, HttpServletRequest request){
+        //
+        UserInfo user=(UserInfo) request.getSession().getAttribute(Common.USER_INFO);
+        if (user == null){
+            throw new CustomException("1001","session已失效，请重新登录");
+
+        }
+        //
+        Integer level=user.getLevel();
+        PageHelper.startPage(pageNum,pageSize);
+        List<OrderInfo> orderInfos;
+        //
+        if (1 == level){
+            orderInfos=orderInfoMapper.selectAll();
+        }else if(userId!=null){
+            orderInfos=orderInfoMapper.findByEndUserId(userId,null);
+        }else {
+            orderInfos=new ArrayList<>();
+        }
+        for (OrderInfo orderInfo: orderInfos){
+            packOrder(orderInfo);
+        }
+        return PageInfo.of(orderInfos);
+    }
+
+
+
+
+
+    /**
+     * 删除订单
+     * @param id
+     * Transactional
+     */
+    @Transactional
+    public void delete(Long id) {
+        orderInfoMapper.deleteById(id);
+        orderGoodsRelMapper.deleteByOrderId(id);
     }
 
 

@@ -4,9 +4,7 @@ import cn.hutool.core.collection.CollectionUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.javaclimb.xshopping.entity.GoodsInfo;
-import com.javaclimb.xshopping.entity.TypeInfo;
 import com.javaclimb.xshopping.mapper.GoodsInfoMapper;
-import com.javaclimb.xshopping.mapper.TypeInfoMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -45,6 +43,10 @@ public class GoodsInfoService {
         return goodsInfo;
     }
 
+    /**
+     *
+     * @param goodsInfo
+     */
     private void convertFileListToFilelds(GoodsInfo goodsInfo){
         List<Long> fileList=goodsInfo.getFileList();
         if (!CollectionUtil.isEmpty(fileList)){
@@ -80,6 +82,8 @@ public class GoodsInfoService {
         return list.get(0);
     }
 
+
+
     /**
      * 查询商品是否是推荐商品
      */
@@ -99,6 +103,9 @@ public class GoodsInfoService {
         List<GoodsInfo> list=goodsInfoMapper.findHotSalesGoods();
         return PageInfo.of(list);
     }
+
+
+
 }
 
 
