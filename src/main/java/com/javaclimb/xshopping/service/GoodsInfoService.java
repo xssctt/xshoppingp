@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.javaclimb.xshopping.entity.GoodsInfo;
 import com.javaclimb.xshopping.mapper.GoodsInfoMapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -104,6 +105,13 @@ public class GoodsInfoService {
         return PageInfo.of(list);
     }
 
+    /**
+     * 根据类型查询
+     */
+
+    public List<GoodsInfo> findByType(@Param("typeId") Integer typeId){
+        return goodsInfoMapper.findByType(typeId);
+    }
 
 
 }

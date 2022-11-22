@@ -2,6 +2,7 @@ package com.javaclimb.xshopping.controller;
 
 
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.crypto.SecureUtil;
 import com.javaclimb.xshopping.common.Common;
 import com.javaclimb.xshopping.common.Result;
 import com.javaclimb.xshopping.common.ResultCode;
@@ -94,6 +95,33 @@ public class AccountController {
             return  Result.error("401","未登录");
         }
 
+        return Result.success(user);
+    }
+
+
+
+    /**
+     * 修改密码
+     */
+
+    @PutMapping("/updatePassword")
+    public Result updatePassword(@RequestBody UserInfo userInfo, HttpServletRequest request){
+        Object user1=request.getSession().getAttribute(Common.USER_INFO);
+        if (user1 ==null){
+            return  Result.error("401","未登录");
+        }
+        UserInfo user=(UserInfo)user1;
+        //数据库
+        String oldPassword= SecureUtil.md5(userInfo.getPassword());
+        //前端缓存
+        String password=user.getPassword();
+        if (!oldPassword.equals(password)){
+            return Result.error(ResultCode.USER_ACCOUNT_ERROR.code,ResultCode.USER_ACCOUNT_ERROR.msg);
+        }
+        user.setPassword(SecureUtil.md5(userInfo.getNewPassword()));
+        userInfoService.update(user);
+        //清空session
+        request.getSession().setAttribute(Common.USER_INFO,null);
         return Result.success(user);
     }
 

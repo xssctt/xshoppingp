@@ -4,7 +4,6 @@ import com.javaclimb.xshopping.entity.CartInfo;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestBody;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
@@ -31,4 +30,11 @@ public interface CartInfoMapper extends Mapper<CartInfo> {
 
     @Delete("delete from cart_info where userId=#{userId}")
     int deleteByUserId(@Param("userId") Long userId);
+
+    /**
+     *
+     * @return
+     */
+    List<CartInfo> findAll();
+
 }

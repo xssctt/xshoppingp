@@ -70,7 +70,7 @@
                     </ul>
                 </li>
                 <li> <a href="accountUserInfo.html"> <i class="fa fa-user"></i> 个人信息</a></li>
-                <li> <a href="updatePassword.html.html"> <i class="fa fa-unlock-alt"></i> 修改密码</a></li>
+                <li> <a href="updatePassword.html"> <i class="fa fa-unlock-alt"></i> 修改密码</a></li>
                 <li> <a href="javascript:void(0)" @click="logout()"> <i class="fa fa-power-off"></i> 退出登录</a></li>
 
 
@@ -109,6 +109,7 @@
                                     <th>年龄</th>
                                     <th>手机号</th>
                                     <th>地址</th>
+
                                     <th>操作</th>
                                 </tr>
                                 </thead>
@@ -121,6 +122,7 @@
                                         <td>{{obj.age}}</td>
                                         <td>{{obj.phone}}</td>
                                         <td>{{obj.address}}</td>
+
                                         <td>
                                             <button class="btn btn-primary btn-xs" v-on:click="init(obj)"> 编辑</button>
                                             <button class="btn btn-danger btn-xs" v-on:click="del(obj.id)"> 删除</button>
@@ -227,6 +229,8 @@
                                 <input type="text" class="form-control" v-model="entity.address" placeholder="请输入地址">
                             </div>
                         </div>
+
+
 
                     </form>
                 </div>

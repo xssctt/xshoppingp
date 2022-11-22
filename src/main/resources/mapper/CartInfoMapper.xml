@@ -12,5 +12,14 @@
 
 
     </select>
+    <select id="findAll" resultType="com.javaclimb.xshopping.entity.CartInfo">
+
+        select a.*,b.name as userName,c.name as goodsName
+        from cart_info as a
+                 left join user_info as b on a.userId=b.id
+                 left join goods_info as c on a.goodsId=c.id
+
+
+    </select>
 
 </mapper>

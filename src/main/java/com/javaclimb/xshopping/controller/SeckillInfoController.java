@@ -42,4 +42,5 @@ public class SeckillInfoController {
         return Result.success();
     }
 
+
 }

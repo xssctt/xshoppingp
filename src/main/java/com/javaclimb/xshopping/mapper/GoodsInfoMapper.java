@@ -36,6 +36,11 @@ public interface GoodsInfoMapper extends Mapper<GoodsInfo> {
     @Select("select * from goods_info order by sales desc")
     List<GoodsInfo> findHotSalesGoods();
 
+    /**
+     * 根据类型查询
+     */
+    @Select("select * from goods_info where typeId =#{typeId}")
+    List<GoodsInfo> findByType(@Param("typeId") Integer typeId);
 
 
 

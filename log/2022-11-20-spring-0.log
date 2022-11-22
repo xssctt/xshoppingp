@@ -1368,3 +1368,41 @@ java.lang.UnsupportedOperationException: null
 2022-11-20 17:16:04.286  WARN 16948 --- [http-nio-8088-exec-2] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [458] milliseconds.
 2022-11-20 17:19:11.701  INFO 16948 --- [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
 2022-11-20 17:19:11.711  INFO 16948 --- [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2022-11-20 17:19:21.293  INFO 3940 --- [main] c.j.xshopping.XshoppingApplication       : Starting XshoppingApplication using Java 11.0.9.1 on test with PID 3940 (D:\idea_workspace\wxshop\shopp\target\classes started by lenovo in D:\idea_workspace\wxshop\shopp)
+2022-11-20 17:19:21.300  INFO 3940 --- [main] c.j.xshopping.XshoppingApplication       : No active profile set, falling back to 1 default profile: "default"
+2022-11-20 17:19:22.458  WARN 3940 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.javaclimb.xshopping]' package. Please check your configuration.
+2022-11-20 17:19:22.995  INFO 3940 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2022-11-20 17:19:23.010  INFO 3940 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-20 17:19:23.011  INFO 3940 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.63]
+2022-11-20 17:19:23.185  INFO 3940 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-20 17:19:23.185  INFO 3940 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1768 ms
+2022-11-20 17:19:23.294  INFO 3940 --- [main] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2022-11-20 17:19:23.425  INFO 3940 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2022-11-20 17:19:24.688  WARN 3940 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2022-11-20 17:19:24.895  INFO 3940 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
+2022-11-20 17:19:24.913  INFO 3940 --- [main] c.j.xshopping.XshoppingApplication       : Started XshoppingApplication in 4.827 seconds (JVM running for 8.236)
+2022-11-20 17:19:28.249  INFO 3940 --- [http-nio-8088-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-20 17:19:28.250  INFO 3940 --- [http-nio-8088-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-20 17:19:28.251  INFO 3940 --- [http-nio-8088-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-11-20 17:19:28.737  WARN 3940 --- [http-nio-8088-exec-2] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [454] milliseconds.
+2022-11-20 18:11:10.246  INFO 3940 --- [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2022-11-20 18:11:10.268  INFO 3940 --- [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2022-11-20 18:11:22.782  INFO 13636 --- [main] c.j.xshopping.XshoppingApplication       : Starting XshoppingApplication using Java 11.0.9.1 on test with PID 13636 (D:\idea_workspace\wxshop\shopp\target\classes started by lenovo in D:\idea_workspace\wxshop\shopp)
+2022-11-20 18:11:22.788  INFO 13636 --- [main] c.j.xshopping.XshoppingApplication       : No active profile set, falling back to 1 default profile: "default"
+2022-11-20 18:11:24.370  WARN 13636 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.javaclimb.xshopping]' package. Please check your configuration.
+2022-11-20 18:11:25.092  INFO 13636 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2022-11-20 18:11:25.117  INFO 13636 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-20 18:11:25.117  INFO 13636 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.63]
+2022-11-20 18:11:25.349  INFO 13636 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-20 18:11:25.350  INFO 13636 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2433 ms
+2022-11-20 18:11:25.484  INFO 13636 --- [main] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2022-11-20 18:11:25.664  INFO 13636 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2022-11-20 18:11:28.259  WARN 13636 --- [main] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2022-11-20 18:11:28.698  INFO 13636 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path ''
+2022-11-20 18:11:28.740  INFO 13636 --- [main] c.j.xshopping.XshoppingApplication       : Started XshoppingApplication in 7.309 seconds (JVM running for 9.817)
+2022-11-20 18:12:35.456  INFO 13636 --- [http-nio-8088-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-11-20 18:12:35.458  INFO 13636 --- [http-nio-8088-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-11-20 18:12:35.460  INFO 13636 --- [http-nio-8088-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2022-11-20 18:13:39.332  WARN 13636 --- [http-nio-8088-exec-6] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [462] milliseconds.
+2022-11-20 23:50:33.473  INFO 13636 --- [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2022-11-20 23:50:33.482  INFO 13636 --- [SpringApplicationShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed

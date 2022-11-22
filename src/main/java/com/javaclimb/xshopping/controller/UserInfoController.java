@@ -5,12 +5,9 @@ import com.github.pagehelper.PageInfo;
 import com.javaclimb.xshopping.common.Result;
 import com.javaclimb.xshopping.entity.UserInfo;
 import com.javaclimb.xshopping.service.UserInfoService;
-import org.apache.ibatis.annotations.Delete;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.management.relation.RelationSupport;
 
 /**
  * 用户增删改查
@@ -52,7 +49,7 @@ public class UserInfoController {
     }
 
     /**
-     * 修改
+     * gengxin
      */
     @PutMapping()
     public Result<UserInfo> update(@RequestBody UserInfo userInfo){
@@ -68,6 +65,16 @@ public class UserInfoController {
         userInfoService.delete(id);
         return Result.success();
     }
+
+    /**
+     * 获取用户信息
+     */
+    @GetMapping("/price/{id}")
+    public Result<UserInfo> detail(@PathVariable Long id){
+        UserInfo userInfo=userInfoService.findById(id);
+        return Result.success(userInfo);
+    }
+
 
 }
 

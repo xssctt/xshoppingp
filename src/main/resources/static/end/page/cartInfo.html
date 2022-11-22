@@ -2,7 +2,7 @@
 <html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>商品详情信息</title>
+    <title>购物车信息</title>
     <link href="../../css/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/font-awesome.css" rel="stylesheet">
     <link href="../../css/basic.css" rel="stylesheet">
@@ -51,7 +51,7 @@
             <ul class="nav" id="main-menu">
 
                 <li>
-                    <a class="active-menu" href="index.html"> <i class="fa fa-dashboard"> </i> 秒杀商品 </a>
+                    <a class="active-menu" href="index.html"> <i class="fa fa-dashboard"> </i> 订单信息 </a>
                 </li>
 
                 <li>
@@ -63,9 +63,9 @@
                         <li> <a href="typeInfo.html"> <i class="fa fa-table"></i> 商品类别信息</a></li>
                         <li> <a href="goodsInfo.html"> <i class="fa fa-table"></i> 商品详情信息</a></li>
                         <li> <a href="orderInfo.html"> <i class="fa fa-table"></i>订单信息 </a></li>
-                        <li> <a href="cartInfo.html"> <i class="fa fa-table"></i> 购物车信息</a></li>
+                        <li> <a class="active-menu" href="cartInfo.html"> <i class="fa fa-table"></i> 购物车信息</a></li>
                         <li> <a href="commentInfo.html"> <i class="fa fa-table"></i> 评论信息</a></li>
-                        <li> <a class="active-menu" href="seckillInfo.html"> <i class="fa fa-table"></i> 秒杀商品</a></li>
+                        <li> <a href="seckillInfo.html"> <i class="fa fa-table"></i> 秒杀商品</a></li>
 
                     </ul>
                 </li>
@@ -86,37 +86,31 @@
                 <div class="panel panel-default">
 
                     <div class="panel-heading">
-                        秒杀商品信息列表
+                        购物车信息列表
                     </div>
 
                     <div class="panel-body">
                         <div class="table-responsive">
 
-                            <div class="nx-table-header">
-                                <button class="btn btn-sm btn-primary" v-on:click="add()"> 新增</button>
-
-                                <input type="text" placeholder="请输入搜索内容" v-model="name" @keyup.enter="loadTable(1)">
-                                <i class="glyphicon glyphicon-search"></i>
-                            </div>
 
                             <table class="table table-striped table-bordered table-hover">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>商品名称</th>
-                                    <th>开始时间</th>
-                                    <th>结束时间</th>
-
+                                    <th>商品数量</th>
+                                    <th>创建时间</th>
+                                    <th>创建用户</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody v-for="obj in objs">
                                     <tr>
                                         <td>{{obj.id}}</td>
-                                        <td>{{obj.name}}</td>
-                                        <td>{{obj.starttime}}</td>
-                                        <td>{{obj.overtime}}</td>
-
+                                        <td>{{obj.goodsname}}</td>
+                                        <td>{{obj.count}}</td>
+                                        <td>{{obj.createtime}}</td>
+                                        <td>{{obj.userName}}</td>
 
 
                                         <td>
@@ -165,65 +159,6 @@
     </div>
 
 
-    <!--   模态框 1  -->
-    <div class="modal" id="mod">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <!--    header -->
-                <div class="modal-header">
-                    <span class="modal-title">填写信息</span>
-                    <button type="button" class="close" data-dismiss="modal"> </button>
-                </div>
-                <!--      body  -->
-                <div class="modal-body">
-                    <form class="form-horizontal">
-                        <input type="hidden" id="id" name="id" v-model="entity.id">
-
-
-
-                        <div class="form-group">
-                            <div class="col-sm-3 control-label" > 选择商品</div>
-                            <div class="col-sm-7">
-                                <select class="form-control" v-model="entity.name">
-                                    <option v-for="item in goodsObjs" :value="item.id">
-                                        {{item.name}}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-3 control-label" > 开始时间</div>
-                            <div class="col-sm-7">
-                                <input type="datetime-local" class="form-control" v-model="entity.starttime" placeholder="请输入开始时间">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-3 control-label" > 结束时间</div>
-                            <div class="col-sm-7">
-                                <input type="datetime-local" class="form-control" v-model="entity.overtime" placeholder="请输入结束时间">
-                            </div>
-                        </div>
-
-
-
-
-                    </form>
-                </div>
-                <!--       footer         -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" >关闭</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" v-on:click="save()" >保存</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
-
 
 </div>
 
@@ -253,61 +188,37 @@
         })
     }
 
-
-
     // vue  上一页 preActive:true,
     // 下一页 nextActive:true
     new Vue({
         el:"#wrapper",
         data:{
             user:{},
-            name:'',
-
             objs:[],
             pageInfo:{},
-
             preActive:true,        //有上一页 false  没有 true
             nextActive:true ,         //有上一页 false  没有 true
-            entity: {
-
-            },
-            goodsObjs:[]           //所有miaosha的商品
         },
 
         //页面方法
         created: function (){
-            //var time = Date.parse(new Date());
-            //var day = parseInt((a2-a1)/ (1000 * 60 * 60 * 24));//核心：时间戳相减，然后除以天数
-
-            // this.data.time=time;
-            //从缓存取出user信息
+            //从缓存取出usr信息
             this.user=JSON.parse(localStorage.getItem('user'));
-
             this.loadTable(1);
-           //typeObjs 所有的商品类别
-            axios.get("/goodsInfo/page/all?pageSize=1000").then(res=>{
-                if(res.data.code ==='0'){
-                     this.goodsObjs=res.data.data.list;
-                     }else {
-                    msg('error',res.data.msg);
-                }
-            })
+
 
         },
 
-
         methods: {
+
             //查询
             loadTable(pageNum){
-                //查询使用
-                let name = this.name ==='' ? 'all' : this.name;
 
-                axios.get("/seckillInfo/page/"+name+"?pageNum="+pageNum).then(res =>{
+                axios.get("/cartInfo/page/?pageNum="+pageNum).then(res =>{
 /*                   res.data 返回值  枚举类  code 0 认为函数执行成功             */
                     if(res.data.code ==='0'){
                         this.objs=res.data.data.list;
                         this.pageInfo=res.data.data;
-
                         this.preActive=!(this.pageInfo.hasPreviousPage);     //hasPreviousPage是否有上一页
                         this.nextActive=!(this.pageInfo.hasNextPage);         // hasNextPage是否有xia一页
                     }else {
@@ -317,47 +228,11 @@
                 })
             },
 
-            //新增类别
-            add(){
-
-                $('#mod').modal('show');
-            },
-
-            //保存类别数据
-            save(){
-
-                if (!this.entity.id){  //新增执行  id 为空则为新增 不为空 是修改
-                    axios.post("/seckillInfo",this.entity).then(res =>{
-
-                        if(res.data.code==='0'){
-                            msg('success','添加成功');
-                            //hide 隐藏弹框
-                            $('#mod').modal('hide');
-                            //刷新下页面
-                            this.loadTable(1);
-                        }else {
-                            msg('error',res.data.msg);
-                        }
-                    })
-                }else {
-                    axios.put("/seckillInfo",this.entity).then(res =>{
-
-                        if(res.data.code==='0'){
-                            msg('success','修改成功');
-                            //hide 隐藏弹框
-                            $('#mod').modal('hide');
-                            //刷新下页面
-                            this.loadTable(1);
-                        }else {
-                            msg('error',res.data.msg);
-                        }
-                    })
-                }
-            },
 
 
-            //删除shangpin
+            //删除订单
             del(id){
+
                 let _this=this;//获取外部this
 
                 this.$confirm('确认删除？','系统提示',{
@@ -366,7 +241,7 @@
                     cancelButtonClass:'btn-custom-cancel',
                     type: 'warning'
                 }).then(function (){
-                    axios.delete("/seckillInfo/"+id).then(res =>{
+                    axios.delete("/cartInfo/"+id).then(res =>{
 
                         if(res.data.code==='0'){
                             msg('success','删除成功');
@@ -383,14 +258,7 @@
 
 
 
-            //关闭
-            cancel: function (){
-                $("#mymodel").hide();
-            }
-
         }
-
-
     })
 </script>
 </body>

@@ -149,6 +149,9 @@ public class OrderInfoService {
         return PageInfo.of(orderInfos);
     }
 
+
+
+
     /**
      *包装订单的用户和商品信息
      * order
@@ -156,6 +159,9 @@ public class OrderInfoService {
      * id -----> order_goods_rel : orderid(order.id)  goodsid  count
      * goodsid --> goodsinfo
      * count
+     *
+     * 包装 把 用户信息user info  商品信息 goods info 查询到并放入orderinfo
+     *
      */
     private void packOrder(OrderInfo orderInfo){
 
@@ -267,6 +273,16 @@ public class OrderInfoService {
     }
 
 
+
+    /**
+     * 根据id查询订单信息
+     *
+     */
+    public OrderInfo findById(Long id) {
+      OrderInfo orderInfo= orderInfoMapper.selectByPrimaryKey(id);
+      packOrder(orderInfo);
+      return orderInfo;
+    }
 }
 
 

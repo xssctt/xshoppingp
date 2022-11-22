@@ -46,7 +46,7 @@ public class OrderInfoController {
      * required = false 不是必须传值
      */
     @GetMapping("/page")
-    public Result<PageInfo<OrderInfo>> findFrontPage(@RequestParam(required = false) Long userId,
+    public Result<PageInfo<OrderInfo>> findPage(@RequestParam(required = false) Long userId,
                                                     @RequestParam(required = false,defaultValue = "1") Integer pageNum,
                                                     @RequestParam(required = false,defaultValue = "10") Integer pageSize,
                                                     HttpServletRequest request){
@@ -83,6 +83,15 @@ public class OrderInfoController {
     public Result delete(@PathVariable Long id){
         orderInfoService.delete(id);
         return Result.success();
+    }
+    /**
+     * 根据id查询订单信息
+     *
+     */
+    @GetMapping("/order/{id}")
+    public Result<OrderInfo> findById(@PathVariable Long id){
+        OrderInfo orderInfo= orderInfoService.findById(id);
+        return Result.success(orderInfo);
     }
 
 }
