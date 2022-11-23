@@ -80,7 +80,58 @@
 <!-- 右侧盒子 效果  右侧数据展示 -->
     <div id="page-wrapper">
         <div id="page-inner">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="main-box mb-olivedrab">
+                        <i class="fa fa-user"></i>
+                        <span style="margin-left: 20px;">用户总数:{{totalUser}}</span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="main-box mb-darkolivegreen">
+                        <i class="fa fa-comment"></i>
+                        <span style="margin-left: 20px;">评论总数:{{totalComment}}</span>
+                    </div>
+                </div>
 
+                <div class="col-md-3">
+                    <div class="main-box mb-burlywood">
+                        <i class="fa fa-rmb"></i>
+                        <span style="margin-left: 20px;">总交易额:{{totalOrder}}</span>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="main-box mb-cadetblue">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span style="margin-left: 20px;">总销量:{{totalShopping}}</span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel-heading">
+                            <select @change="selectEacharts" v-model="echartsType">
+                                <option value="pie">饼状图</option>
+                                <option value="bar">柱状图</option>
+                            </select>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div id="left" style="width: 100%;height: 400%;"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div id="right" style="width: 100%;height: 400%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 
@@ -105,18 +156,83 @@
     new Vue({
         el:"#wrapper",
         data:{
-            user:{}
+            user:{},
+            totalUser: 0  ,//总用户
+            totalComment: 0  , //总评论
+            totalOrder:0  ,//交易额
+            totalShopping: 0 ,//总销量
+            echartsType:'pie'  ,// pie bar
+            echartsshowLeftarr:[],
+            echartsshowrightarr:[]
         },
         //页面方法
         created: function (){
             //从缓存取出usr信息
             this.user=JSON.parse(localStorage.getItem('user'));
+
+            axios.get("/echarts/getTotal").then(res=>{
+                if (res.data.code ==='0'){
+                    let map =res.data.data;
+                    this.totalUser=map["totalUser"];
+                    this.totalComment=map["totalComment"];
+                    this.totalOrder=map["totalOrder"];
+                    this.totalShopping=map["totalShopping"];
+                }
+            })
+            this.drawline();
         },
         methods: {
             //退出
             logout(){
                 logout();
+            },
+
+            selectEacharts(){
+                let leftmyChart = echarts.init(document.getElementById('left'));
+                let leftoption=this.getEchartsType(this.echartsshowLeftarr,this.echartsType);
+                leftmyChart.setOption(leftoption,true);
+
+                let rightmyChart = echarts.init(document.getElementById('right'));
+                let rightoption=this.getEchartsType(this.echartsshowrightarr,this.echartsType);
+                rightmyChart.setOption(rightoption,true);
+            },
+
+            drawline(){
+                axios.get("/echarts/get/price").then(res=>{
+                    if (res.data.code ==='0'){
+                       this.echartsshowLeftarr=res.data.data;
+
+                       if (this.echartsshowLeftarr.length){
+                           let myChart = echarts.init(document.getElementById('left'));
+                           let option=this.getEchartsType(this.echartsshowLeftarr,this.echartsType);
+                           myChart.setOption(option,true);
+                       }
+                    }
+                });
+
+                axios.get("/echarts/get/shopping").then(res=>{
+                    if (res.data.code ==='0'){
+                        this.echartsshowrightarr=res.data.data;
+
+                        if (this.echartsshowrightarr.length){
+                            let myChart = echarts.init(document.getElementById('right'));
+                            let option=this.getEchartsType(this.echartsshowrightarr,this.echartsType);
+                            myChart.setOption(option,true);
+                        }
+                    }
+                });
+
+            },
+            getEchartsType(echarts,type){
+                for (let item of echarts){
+                    if (item.series[0].type ===type){
+                        return item;
+                    }
+                }
             }
+
+
+
         }
     })
 </script>

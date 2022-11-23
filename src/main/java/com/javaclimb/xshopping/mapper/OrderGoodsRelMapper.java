@@ -1,6 +1,7 @@
 package com.javaclimb.xshopping.mapper;
 
 import com.javaclimb.xshopping.entity.OrderGoodsRel;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.Mapper;
 
@@ -18,4 +19,12 @@ public interface OrderGoodsRelMapper extends Mapper<OrderGoodsRel> {
      * @param orderId
      */
     void deleteByOrderId(Long orderId);
+
+    /**
+     * 销量
+     * @return
+     */
+    @Select("select sum(count) from order_goods_rel")
+    Integer totalShopping();
+
 }

@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class OrderInfoService {
@@ -283,6 +284,39 @@ public class OrderInfoService {
       packOrder(orderInfo);
       return orderInfo;
     }
+
+
+    /**
+     *总交易额
+     */
+
+    public Double count(){
+        return orderInfoMapper.count();
+    }
+
+    /**
+     * 总销量
+     */
+
+    public Integer totalShopping(){
+        return orderGoodsRelMapper.totalShopping();
+    }
+
+    /**
+     * 分类总销售
+     */
+
+    public List<Map<String,Object>> getTypePrice(){
+        return orderInfoMapper.getTypePrice();
+    }
+    /**
+     * 分类总销售
+     */
+
+    public List<Map<String,Object>> getTypeCount(){
+        return orderInfoMapper.getTypeCount();
+    }
+
 }
 
 

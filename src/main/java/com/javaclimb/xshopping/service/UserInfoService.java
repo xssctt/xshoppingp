@@ -26,6 +26,10 @@ public class UserInfoService {
     @Resource
     private UserInfoMapper userInfoMapper;
 
+
+
+
+
     public UserInfo login(String name,String password){
         //从数据库查询用户
         List<UserInfo> list=userInfoMapper.findByName(name);
@@ -115,6 +119,13 @@ public class UserInfoService {
      */
     public void delete(long id){
         userInfoMapper.deleteByPrimaryKey(id);
+    }
+
+    /**
+     * 用户总数
+     */
+    public Integer count(){
+        return userInfoMapper.count();
     }
 }
 
