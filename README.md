@@ -16,6 +16,18 @@ spring boot微信商城
 性能优化： 为了提供更好的用户体验，后端需要进行性能优化，确保在高并发情况下系统能够稳定运行。
 
 日志记录与监控： 记录系统运行时的日志，以便排查问题和进行系统监控，确保及时发现并解决潜在的故障
-# 延伸阅读
+# 项目前端页面
 
 ![前端商品详情页](https://raw.githubusercontent.com/xssctt/typora_image/main/img/202403050945814.png)
+
+![前端个人页面](https://raw.githubusercontent.com/xssctt/typora_image/main/img/202403050945805.png)
+
+![前端购物车](https://raw.githubusercontent.com/xssctt/typora_image/main/img/202403050945657.png)
+
+![前端商品详情页](https://raw.githubusercontent.com/xssctt/typora_image/main/img/202403050945425.png)
+
+![前端分类](https://raw.githubusercontent.com/xssctt/typora_image/main/img/202403050945941.png)
+
+![前端订单页面](https://raw.githubusercontent.com/xssctt/typora_image/main/img/202403050945063.png)
+
+![前端登录](https://raw.githubusercontent.com/xssctt/typora_image/main/img/202403050945911.png)
